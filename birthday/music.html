@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <script src="./js/iconfont.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+  <title>music</title>
+  <style>
+    audio {
+      width: 100%;
+    }
+
+    /* 图标 */
+
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+
+    .header {
+      width: 100%;
+    }
+
+    .header .swiper-slide {
+      height: 4rem;
+      overflow: hidden;
+    }
+
+    .header .swiper-container .swiper-slide img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-pagination {
+      text-align: left;
+    }
+
+    .swiper-container-horizontal>.swiper-pagination-bullets {
+      left: 10px;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: white;
+    }
+
+    .header .swiper-container .icon-fanhui {
+      position: absolute;
+      z-index: 2;
+      width: .5rem;
+      height: .5rem;
+      top: .4rem;
+      left: .2rem;
+
+    }
+
+    .songs {
+      width: 100%;
+    }
+
+    .songs-header {
+      width: 100%;
+      height: 1rem;
+    }
+
+    .songs-header h2 {
+      font-size: .36rem;
+      height: 1rem;
+      line-height: 1rem;
+      margin-left: .4rem;
+      font-weight: 900;
+    }
+
+    .songs-list {
+      width: 100%;
+    }
+
+    .songs-list ul:before,
+    .songs-list ul:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: rgba(192, 192, 192, .7);
+    }
+
+    .songs-list ul li::before {
+      background: url(./images/songs-list-li.active.jpeg) 0 / cover fixed;
+    }
+
+    .songs-list ul li {
+      position: relative;
+      display: block;
+      height: 1.2rem;
+      background: hsla(0, 0%, 100%, .3);
+      overflow: hidden;
+    }
+
+
+
+    .songs-list ul li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      filter: blur(150px);
+      margin-top: -30px;
+    }
+
+    .songs-list ul li .song-name {
+      position: absolute;
+      top: .2rem;
+      left: .4rem;
+      font-size: .32rem;
+      line-height: .32rem;
+      font-weight: 700;
+    }
+
+    .songs-list ul li .song-singer {
+      position: absolute;
+      bottom: .2rem;
+      left: .4rem;
+      font-size: .28rem;
+      line-height: .28rem;
+      font-weight: 800;
+      color: rgb(192, 192, 192);
+    }
+
+    .songs-list ul li .song-time {
+      position: absolute;
+      font-size: .28rem;
+      line-height: .28rem;
+      font-weight: 800;
+      top: .6rem;
+      margin-top: -.14rem;
+      right: .4rem;
+    }
+
+    .songs-list ul li .icon-yinlemoshi,
+    .songs-list ul li .icon-xiazai {
+      position: absolute;
+      width: .32rem;
+      height: .32rem;
+      top: .6rem;
+      margin-top: -.16rem;
+      display: none;
+    }
+
+    .songs-list ul li .icon-yinlemoshi {
+      left: .4rem;
+    }
+
+    .songs-list ul li .icon-xiazai {
+      right: 1.5rem;
+    }
+
+    /* animate */
+
+    .songs-list ul li .song-name,
+    .songs-list ul li .song-singer,
+    .songs-list ul li .song-time .songs-list ul li .icon-yinlemoshi,
+    .song-list ul li .icon-xiazai {
+      transition: all 1s;
+    }
+
+    .songs-list ul li .song-name-animate,
+    .songs-list ul li .song-singer-animate {
+      left: .8rem;
+    }
+
+    .songs-list ul li .song-name-animate,
+    .songs-list ul li .song-time-animate {
+      color: #6639f7;
+    }
+
+    .songs-list ul li .song-singer-animate {
+      color: #aa96fd;
+    }
+
+    .songs-list ul li .icon-yinlemoshi-animate,
+    .songs-list ul li .icon-xiazai-animate {
+      display: block;
+    }
+
+    /* play status */
+    #audio{
+      width: 100%;
+      border-radius: 0
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- header start -->
+    <div class="header">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./images/liangying2.jpeg" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/liangying1.jpeg" alt="">
+          </div>
+          <div class="swiper-slide">
+            <img src="./images/liangying3.jpeg" alt="">
+          </div>
+        </div>
+        <svg class="icon-fanhui" aria-hidden="true">
+          <use xlink:href="#icon-fanhui"></use>
+        </svg>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!-- header end -->
+    <!-- hot-songs start -->
+    <div class="songs">
+      <div class="songs-header">
+        <h2>Hot songs</h2>
+      </div>
+      <div class="songs-list">
+        <ul>
+          <li class="active" data-src='./media/1.mp3'>
+            <svg class="icon icon-yinlemoshi" aria-hidden="true">
+              <use xlink:href="#icon-yinlemoshi"></use>
+            </svg>
+            <span class="song-name">i don't know</span>
+            <span class="song-singer">i know</span>
+            <span class="song-time">4:30</span>
+            <svg class="icon icon-xiazai" aria-hidden="true">
+              <use xlink:href="#icon-xiazai"></use>
+            </svg>
+          </li>
+          <li>
+            <svg class="icon icon-yinlemoshi" aria-hidden="true">
+              <use xlink:href="#icon-yinlemoshi"></use>
+            </svg>
+            <span class="song-name">i don't know</span>
+            <span class="song-singer">i know</span>
+            <span class="song-time">4:30</span>
+            <svg class="icon icon-xiazai" aria-hidden="true">
+              <use xlink:href="#icon-xiazai"></use>
+            </svg>
+          </li>
+          <li>
+            <svg class="icon icon-yinlemoshi" aria-hidden="true">
+              <use xlink:href="#icon-yinlemoshi"></use>
+            </svg>
+            <span class="song-name">i don't know</span>
+            <span class="song-singer">i know</span>
+            <span class="song-time">4:30</span>
+            <svg class="icon icon-xiazai" aria-hidden="true">
+              <use xlink:href="#icon-xiazai"></use>
+            </svg>
+          </li>
+          <li>
+            <svg class="icon icon-yinlemoshi" aria-hidden="true">
+              <use xlink:href="#icon-yinlemoshi"></use>
+            </svg>
+            <span class="song-name">i don't know</span>
+            <span class="song-singer">i know</span>
+            <span class="song-time">4:30</span>
+            <svg class="icon icon-xiazai" aria-hidden="true">
+              <use xlink:href="#icon-xiazai"></use>
+            </svg>
+          </li>
+          <li>
+            <svg class="icon icon-yinlemoshi" aria-hidden="true">
+              <use xlink:href="#icon-yinlemoshi"></use>
+            </svg>
+            <span class="song-name">i don't know</span>
+            <span class="song-singer">i know</span>
+            <span class="song-time">4:30</span>
+            <svg class="icon icon-xiazai" aria-hidden="true">
+              <use xlink:href="#icon-xiazai"></use>
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <audio controls id="audio">
+      <source src="./media/music.mp3">
+    </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      autoplay: true, //可选选项，自动滑动
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination'
+      },
+    })
+    var audio = document.getElementById('audio')
+    var songNames = document.querySelectorAll('.song-name')
+    var songSingers = document.querySelectorAll('.song-singer')
+    var songTimes = document.querySelectorAll('.song-time')
+    var songsLists = document.querySelectorAll('.songs-list ul li');
+    var iconYinlemoshis = document.querySelectorAll('.icon-yinlemoshi')
+    var iconXiazais = document.querySelectorAll('.icon-xiazai')
+    
+    for (var i = 0; i < songsLists.length; i++) {
+      songsLists[i].onclick = (function (index) {
+
+        return function () {
+          // play audio that have been click 
+          audio.src = songsLists[index].getAttribute('data-src');
+          audio.paused ? audio.play() : audio.pause()
+          
+         
+          // remove all element animate
+          for (let j = 0; j < songsLists.length; j++) {
+            songNames[j].classList.remove('song-name-animate')
+            songSingers[j].classList.remove('song-singer-animate')
+            songTimes[j].classList.remove('song-time-animate')
+            iconYinlemoshis[j].classList.remove('icon-yinlemoshi-animate')
+            iconXiazais[j].classList.remove('icon-xiazai-animate')
+          }
+          // add current element animate
+          songNames[index].classList.add('song-name-animate')
+          songSingers[index].classList.add('song-singer-animate')
+          songTimes[index].classList.add('song-time-animate')
+          iconYinlemoshis[index].classList.add('icon-yinlemoshi-animate')
+          iconXiazais[index].classList.add('icon-xiazai-animate') 
+        }
+
+
+      })(i)
+    }
+  </script>
+
+</body>
+
+</html>
